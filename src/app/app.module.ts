@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ListPageComponent } from './list-page/list-page.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListPageComponent
+    ListPageComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule
