@@ -1,3 +1,4 @@
-<p>
-  search works!
-</p>
+<form #searchForm="ngForm" (ngSubmit)="onSubmit()">
+  <input type="search" name="query" [(ngModel)]="search.query">
+  <button>Chercher</button>
+</form>
