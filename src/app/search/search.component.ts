@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Search } from '../entities/search';
@@ -12,6 +12,8 @@ import { forbiddenRegexValidator } from '../forbidden-regex-validator.directive'
 
 
 export class SearchComponent implements OnInit {
+
+  @Output() doSearch = new EventEmitter<string>();
 
   search = new Search();
 
@@ -30,7 +32,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.search);
+    this.doSearch.emit(this.search.query);
   }
   
 }
