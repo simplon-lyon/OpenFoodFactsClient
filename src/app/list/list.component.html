@@ -1,3 +1,7 @@
 <section>
-  <app-list-item *ngFor="let product of products" [product]="product"></app-list-item>
+  <app-list-item 
+    *ngFor="let product of products"
+    [product]="product"
+    (clickedItem)="catchClickedItem($event)">
+  </app-list-item>
 </section>

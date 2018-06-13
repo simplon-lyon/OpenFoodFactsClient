@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductStoreService } from '../services/product-store.service';
 import { Router } from '@angular/router';
+import { Product } from '../entities/product';
 
 @Component({
   selector: 'app-list-item',
@@ -8,16 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent implements OnInit {
-  @Input() product:any;
+  @Input() product: Product;
+  @Output() clickedItem: EventEmitter<Product> = new EventEmitter;
 
-  constructor( private productData : ProductStoreService, private router : Router ) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   onClick(){
-    this.productData.data = this.product;
-    this.router.navigate([`/product/${this.product.id}`]);
+    this.clickedItem.emit(this.product);
   }
 
 }

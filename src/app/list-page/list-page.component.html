@@ -1,2 +1,5 @@
-<app-search></app-search>
-<app-list [products]="products"></app-list>
+<app-search (doSearch)="doSearch($event)"></app-search>
+<app-list
+  [products]="products"
+  (clickedItem)="goToProduct($event)">
+</app-list>

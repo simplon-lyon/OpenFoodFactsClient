@@ -18,6 +18,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'list', component: ListPageComponent },
+  { path: 'list/:query', component: ListPageComponent },
   { path: 'product/:id', component: ProductPageComponent },
 ];
 
@@ -36,7 +37,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   providers: [

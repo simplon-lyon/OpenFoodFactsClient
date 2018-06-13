@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Product } from '../entities/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductStoreService {
-  data : Object;
+  product: Product;
+  list: Product[];
   constructor() { }
-
-  getData(id){
-    return this.data;
-  }
-
-  setData(data){
-    this.data = data;
-  }
 }

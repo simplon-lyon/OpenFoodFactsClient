@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../entities/product';
 
 @Component({
@@ -8,11 +8,15 @@ import { Product } from '../entities/product';
 })
 export class ListComponent implements OnInit {
 
-  @Input() products: Product[]
-
+  @Input() products: Product[];
+  @Output() clickedItem: EventEmitter<Product> = new EventEmitter;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  catchClickedItem(product : Product){
+    this.clickedItem.emit(product);
   }
 
 }
