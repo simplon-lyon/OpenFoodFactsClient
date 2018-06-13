@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Product } from '../entities/product';
 
 @Component({
   selector: 'app-list',
@@ -7,11 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  products: Object[] = [
-    {id: 1, name: 'pizza', imageUrl: 'https://placekitten.com/250/250', nutriscore: 'b'},
-    {id: 2, name: 'raviolli', imageUrl: 'https://placekitten.com/250/250', nutriscore: 'b'},
-    {id: 3, name: 'ratatouille', imageUrl: 'https://placekitten.com/250/250', nutriscore: 'b'}
-  ];
+  @Input() products: Product[]
 
   constructor() { }
 

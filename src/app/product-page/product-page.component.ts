@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductDataService } from '../services/product-data.service';
+import { ProductStoreService } from '../services/product-store.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductPageComponent implements OnInit {
   product : any;
-  constructor(private productData: ProductDataService, private route: ActivatedRoute) { 
-    this.product = this.productData.getData(this.route.snapshot.params.id);
+  constructor(private productData: ProductStoreService, private route: ActivatedRoute) { 
+    this.product = this.productData.data;
   }
 
   ngOnInit() {

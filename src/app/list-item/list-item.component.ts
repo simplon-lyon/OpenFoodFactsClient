@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductDataService } from '../services/product-data.service';
+import { ProductStoreService } from '../services/product-store.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 export class ListItemComponent implements OnInit {
   @Input() product:any;
 
-  constructor( private productData : ProductDataService, private router : Router ) { }
+  constructor( private productData : ProductStoreService, private router : Router ) { }
 
   ngOnInit() {
   }
 
   onClick(){
-    this.productData.setData(this.product);
+    this.productData.data = this.product;
     this.router.navigate([`/product/${this.product.id}`]);
   }
 

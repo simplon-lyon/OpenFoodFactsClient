@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductAjaxService } from '../services/product-ajax.service';
+import { Product } from '../entities/product';
 
 @Component({
   selector: 'app-list-page',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPageComponent implements OnInit {
 
-  constructor() { }
+  products: Product[];
+
+  constructor(private productAjax: ProductAjaxService) {
+    productAjax.search('pizza').subscribe(value => {
+      this.products = value;
+    })
+  }
 
   ngOnInit() { 
   }
