@@ -1,0 +1,20 @@
+<section>
+  <form [formGroup]="form" (submit)="doForm()">
+    <label>Field 1</label>
+    <select multiple formControlName="labels">
+      <option value="en:organic">Bio</option>
+      <option value="en:no-colorings">Sans colorant</option>
+      <option value="en:no-preservatives">Sans conservateur</option>
+      <option value="en:no-artificial-flavors">Sans Arôme Artificiel</option>
+    </select>
+    <label>Field 2</label>
+    <select multiple formControlName="allergens">
+      <option value="en:eggs">Oeufs</option>
+      <option value="en:milk">Lait</option>
+      <option value="en:peanuts">Cacahuète</option>
+      <option value="en:soybean">Soja</option>
+    </select>
+    <button>Go</button>
+  </form>
+
+</section>

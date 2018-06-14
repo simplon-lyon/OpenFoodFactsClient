@@ -3,6 +3,7 @@ import { ProductAjaxService } from '../services/product-ajax.service';
 import { Product } from '../entities/product';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductStoreService } from '../services/product-store.service';
+import { Filters } from '../product-filter/filters';
 
 @Component({
   selector: 'app-list-page',
@@ -37,7 +38,31 @@ export class ListPageComponent implements OnInit {
   private search(query){
     this.productAjax.search(query).subscribe(value => {
       this.products = value;
-    })
+    });
+  }
+
+  filterProducts(filters:Filters) {
+    this.products = this.products.filter( item => {
+      //On boucle sur les filters.labels et si jamais l'item
+      //actuel n'en includes pas un, on return false
+      for (const label of filters.labels) {
+        if(!item.labels.includes(label)) {
+          return false;
+        }
+      }
+      //On boucle sur les filters.allergens et si jamais l'item
+      //actuel en includes un, on return false
+      for (const allergen of filters.allergens) {
+        if(item.allergens.includes(allergen)) {
+          return false;
+        }
+      }
+      //On return true à la fin (on atteindra ce true que si les deux
+      //boucles sont passées sans jamais return false)
+      return true;
+    });
+
+
   }
 
 }

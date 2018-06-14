@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,6 +11,7 @@ import { SearchComponent } from './search/search.component';
 import { ListComponent } from './list/list.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { ProductAjaxService } from './services/product-ajax.service';
+import { ProductFilterComponent } from './product-filter/product-filter.component';
 
 const appRoutes: Routes = [
   { path: '',
@@ -30,11 +31,13 @@ const appRoutes: Routes = [
     SearchComponent,
     ListComponent,
     ListItemComponent,
+    ProductFilterComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only

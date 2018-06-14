@@ -1,4 +1,5 @@
 <app-search (doSearch)="doSearch($event)"></app-search>
+<app-product-filter *ngIf="products && products.length > 0" (filterSubmit)="filterProducts($event)"></app-product-filter>
 <app-list
   [products]="products"
   (clickedItem)="goToProduct($event)">
