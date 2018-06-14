@@ -4,3 +4,7 @@
   [products]="products"
   (clickedItem)="goToProduct($event)">
 </app-list>
+
+<select #select (change)="changePage(select.value)">
+  <option *ngFor="let val of pageNumber; let page = index">{{page+1}}</option>
+</select>

@@ -11,7 +11,7 @@ import { Filters } from '../product-filter/filters';
   styleUrls: ['./list-page.component.css']
 })
 export class ListPageComponent implements OnInit {
-
+  pageNumber = [];
   products: Product[];
 
   constructor(private productAjax: ProductAjaxService, private productStore: ProductStoreService, private router: Router, route: ActivatedRoute) {
@@ -35,9 +35,14 @@ export class ListPageComponent implements OnInit {
     this.router.navigate([`/product/${product.id}`]);
   }
 
+  changePage(index) {
+    this.productAjax.pagination$.next({page:index, pageSize: 20});
+  }
+
   private search(query){
     this.productAjax.search(query).subscribe(value => {
       this.products = value;
+      this.pageNumber = new Array(Math.ceil(this.productStore.count / 20));
     });
   }
 

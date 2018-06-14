@@ -7,5 +7,6 @@ import { Product } from '../entities/product';
 export class ProductStoreService {
   product: Product;
   list: Product[];
+  count:number;
   constructor() { }
 }
