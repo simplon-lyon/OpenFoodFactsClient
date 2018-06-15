@@ -12,6 +12,9 @@ import { ListComponent } from './list/list.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { ProductAjaxService } from './services/product-ajax.service';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
+import { LikePageComponent } from './like-page/like-page.component';
+import { LikeGuard } from './guards/like-guard.service';
+
 
 const appRoutes: Routes = [
   { path: '',
@@ -21,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'list', component: ListPageComponent },
   { path: 'list/:query', component: ListPageComponent },
   { path: 'product/:id', component: ProductPageComponent },
+  { path: 'likes', component: LikePageComponent, canActivate: [LikeGuard] }
 ];
 
 @NgModule({
@@ -32,6 +36,7 @@ const appRoutes: Routes = [
     ListComponent,
     ListItemComponent,
     ProductFilterComponent,
+    LikePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +47,6 @@ const appRoutes: Routes = [
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
     )
-  ],
-  providers: [
-    ProductAjaxService
   ],
   bootstrap: [AppComponent]
 })

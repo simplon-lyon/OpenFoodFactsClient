@@ -3,8 +3,10 @@
     <div class="img-container">
       <img [src]="product.imageUrl" [alt]="product.name">
     </div>
+  </a>
     <div>
       <h3>{{ product.name }}</h3>
+      <button (click)="doLike()">Like</button>
     </div>
-  </a>
+  
 </article>

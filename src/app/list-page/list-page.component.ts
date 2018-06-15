@@ -16,7 +16,8 @@ export class ListPageComponent implements OnInit {
 
   constructor(private productAjax: ProductAjaxService, private productStore: ProductStoreService, private router: Router, route: ActivatedRoute) {
     const currentSearch = route.snapshot.params.query;
-    if (!this.productStore.list) {
+    
+    if (!this.productStore.list || this.productStore.list.length === 0) {
       this.search(currentSearch);      
     }
     this.products = this.productStore.list;
@@ -47,7 +48,7 @@ export class ListPageComponent implements OnInit {
   }
 
   filterProducts(filters:Filters) {
-    this.products = this.products.filter( item => {
+    this.products = this.productStore.list.filter( item => {
       //On boucle sur les filters.labels et si jamais l'item
       //actuel n'en includes pas un, on return false
       for (const label of filters.labels) {
