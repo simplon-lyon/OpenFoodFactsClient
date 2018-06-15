@@ -15,10 +15,16 @@ export class ProductAjaxService {
   constructor( private http: HttpClient, private productStore: ProductStoreService ) { }
 
   search(query){
+    //On part de l'observable de Pagination, afin de relancer la recherche à chaque changement de page ou de
+    //taille de page.
     return this.pagination$.pipe(
+      //On utilise le switchMap pour dire qu'à chaque nouvelle valeur de pagination$, on fera le http.get en lui fournissant les données de paginations actuelles
       switchMap((pagination:Pagination) => this.http.get(`https://fr.openfoodfacts.org/cgi/search.pl?search_terms=${query}&search_simple=1&action=process&json=1&page=${pagination.page}&page_size=${pagination.pageSize}`)),
+      //on stock le nombre total de produit potentiel de la recherche dans le productStore
       tap((result: any) => this.productStore.count = result.count),
+      //On transforme les données brut de l'API en une liste d'instance de Product
       map((val: any) => Product.list(val.products)),
+      //On stock la liste en question dans le productStore
       tap((list: Product[]) => this.productStore.list = list)
     );
     

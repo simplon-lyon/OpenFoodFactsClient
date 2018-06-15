@@ -13,6 +13,8 @@ export class LikePageComponent implements OnInit {
   constructor(private likeService:LikeService) { }
 
   ngOnInit() {
+    //On subscribe ici à à l'observable du service qui permettra de mettre à jour en temps
+    //réel la liste des produits likés (utile notamment pour disliké les produits affichés)
     this.likeService.likedProducts$.subscribe(likes => this.products = likes);
   }
 

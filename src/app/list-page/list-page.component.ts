@@ -47,6 +47,16 @@ export class ListPageComponent implements OnInit {
     });
   }
 
+  /**
+   * La méthode filter, dans son état actuel permet d'appliquer un filtre sur les produits actuellement stockés
+   * dans le productStore.
+   * La fonctionnalité de filtrage est implémenter de manière assez médiocre ici : en effet, ne seront filtrés que
+   * les 20 résultats que l'on a actuellement sous la main, les filtres s'annuleront à chaque changement de page de
+   * produit. 
+   * Une meilleure méthode d'implémentation aurait été de faire le filtre directement au moment de l'appel ajax afin
+   * de ne récupérer que les produits qui nous intéressent, tout se passerait alors dans le ProductAjaxService. 
+   * @param filters Les filtres à appliquer sur la liste actuelle de products
+   */
   filterProducts(filters:Filters) {
     this.products = this.productStore.list.filter( item => {
       //On boucle sur les filters.labels et si jamais l'item

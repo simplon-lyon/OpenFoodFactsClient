@@ -2,16 +2,24 @@ import { Injectable } from '@angular/core';
 import { Product } from '../entities/product';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class LikeService {
+  /**
+   * Un BehaviorSubject est un Subject (un Observable sur lequel on peut pousser de nouvelles données)
+   * qui garde en mémoire la dernière valeur poussée pour l'envoyer à tout nouveau subscribe directement.
+   */
   likedProducts$ = new BehaviorSubject<Product[]>([]);
 
   constructor() {
     this.getLikedProducts();
   }
-
+  /**
+   * Cette méthode va chercher les products actuellement likés, stockés en localStorage s'il y en a, sinon renvoie
+   * un tableau vide
+   */
   getLikedProducts(): Product[] {
     let storage: any = localStorage.getItem('likes');
     if (storage) {
@@ -23,6 +31,11 @@ export class LikeService {
     return storage;
   }
 
+  /**
+   * Cette méthode vérifie si le produit rentré en argument est déjà présent dans la liste de like, si oui,
+   * il l'en retire, si non, il l'ajoute et fait persister en localStorage dans tous les cas
+   * @param product le nouveau produit à liker/disliker
+   */
   toggleLike(product: Product): void {
     //On récupère les likes actuels avec la méthode du dessus
     let likes = this.getLikedProducts();
@@ -43,4 +56,5 @@ export class LikeService {
     this.likedProducts$.next(likes);
 
   }
+
 }
